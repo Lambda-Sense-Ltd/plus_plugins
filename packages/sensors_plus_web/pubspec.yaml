@@ -3,6 +3,7 @@ description: The web implementation of sensors_plus
 version: 0.2.0
 homepage: https://plus.fluttercommunity.dev/
 repository: https://github.com/fluttercommunity/plus_plugins/tree/main/packages/
+publish_to: none
 
 environment:
   sdk: '>=2.7.0 <3.0.0'
@@ -18,7 +19,11 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
-  sensors_plus_platform_interface: ^0.2.0
+  sensors_plus_platform_interface:
+    git:
+      url: git@github.com:Lambda-Sense-Ltd/plus_plugins.git
+      ref: sensor_plus_platform_interface-lds
+      path: packages/sensors_plus_platform_interface
   flutter_web_plugins:
     sdk: flutter
 
