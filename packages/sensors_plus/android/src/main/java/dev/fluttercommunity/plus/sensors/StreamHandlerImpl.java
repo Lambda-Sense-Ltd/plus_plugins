@@ -8,6 +8,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+
+import java.util.Date;
+
 import io.flutter.plugin.common.EventChannel;
 
 class StreamHandlerImpl implements EventChannel.StreamHandler {
@@ -39,10 +42,13 @@ class StreamHandlerImpl implements EventChannel.StreamHandler {
 
       @Override
       public void onSensorChanged(SensorEvent event) {
-        double[] sensorValues = new double[event.values.length];
+        double timeInMillis = (new Date()).getTime()
+          + (event.timestamp - System.nanoTime()) / 1000000L;
+        double[] sensorValues = new double[event.values.length+1];
         for (int i = 0; i < event.values.length; i++) {
           sensorValues[i] = event.values[i];
         }
+        sensorValues[3] = timeInMillis;
         events.success(sensorValues);
       }
     };

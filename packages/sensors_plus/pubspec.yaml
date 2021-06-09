@@ -3,6 +3,7 @@ description: Flutter plugin for accessing accelerometer and gyroscope sensors.
 version: 0.6.0
 homepage: https://plus.fluttercommunity.dev/
 repository: https://github.com/fluttercommunity/plus_plugins/tree/main/packages/
+publish_to: none
 
 flutter:
   plugin:
@@ -18,8 +19,16 @@ flutter:
 dependencies:
   flutter:
     sdk: flutter
-  sensors_plus_web: ^0.2.0
-  sensors_plus_platform_interface: ^0.2.0
+  sensors_plus_web: 
+    git:
+      url: git@github.com:Lambda-Sense-Ltd/plus_plugins.git
+      ref: sensor_plus_platform_interface-lds
+      path: packages/sensors_plus_web
+  sensors_plus_platform_interface:
+    git:
+      url: git@github.com:Lambda-Sense-Ltd/plus_plugins.git
+      ref: sensor_plus_platform_interface-lds
+      path: packages/sensors_plus_platform_interface
 
 dev_dependencies:
   test: ^1.3.0

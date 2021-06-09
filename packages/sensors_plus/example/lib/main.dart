@@ -126,6 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
       accelerometerEvents.listen(
         (AccelerometerEvent event) {
           setState(() {
+            print(event.timestamp);
             _accelerometerValues = <double>[event.x, event.y, event.z];
           });
         },
