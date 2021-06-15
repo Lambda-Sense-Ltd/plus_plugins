@@ -42,12 +42,15 @@ class StreamHandlerImpl implements EventChannel.StreamHandler {
 
       @Override
       public void onSensorChanged(SensorEvent event) {
-        double timeInMillis = (new Date()).getTime()
-          + (event.timestamp - System.nanoTime()) / 1000000L;
+//      double timeInMillis = (new Date()).getTime()
+//         + (event.timestamp - System.nanoTime()) / 1000000L;
+//      (event.timestamp - System.nanoTime()) might generate a positive value under undetermined
+//      condition. Thus, it is not recommended to use this formula to calculate the exact timestamp.
         double[] sensorValues = new double[event.values.length+1];
         for (int i = 0; i < event.values.length; i++) {
           sensorValues[i] = event.values[i];
         }
+        double timeInMillis = event.timestamp/1000000L;
         sensorValues[3] = timeInMillis;
         events.success(sensorValues);
       }
